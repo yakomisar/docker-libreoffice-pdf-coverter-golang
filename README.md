@@ -9,7 +9,7 @@ A LibreOffice instance operates within the Docker container and available from y
 ## Prerequisites
 This service is exclusively designed for operation as a Docker container. Although standalone operation may be possible, it is neither expected nor officially supported by the maintainers of this project.
 
-Before you start, ensure Docker is installed and running on your machine. If not, download Docker from the [https://www.docker.com/get-started](official Docker website).
+Before you start, ensure Docker is installed and running on your machine. If not, download Docker from the [official Docker website](https://www.docker.com/get-started).
 
 ## Installation
 
