@@ -1,13 +1,19 @@
-## Overview 
-This project is a Docker-based environment that leverages LibreOffice for converting various types of documents to PDF. The supported document formats include but are not limited to Word, OpenDocument, and more.
+# LibreOffice PDF Converter Docker Environment
 
-An instance of LibreOffice runs within the Docker container and is controlled through a local socket using the UNO protocol. The container is designed to be scalable and efficient, allowing for high-performance conversion of documents to PDF format.
+This repository provides a Docker-based environment that utilizes LibreOffice for converting various types of documents into PDF format. It supports a multitude of document formats, including, but not limited to, Word, Excel, PowerPoint and OpenDocument.
 
-## Getting started
-To get started, ensure that you have Docker installed on your machine. If not, you can download Docker from the [https://www.docker.com/get-started/](official Docker website).
+## System Design
 
-This micro-service is intended for use exclusively as a docker container. While it may be possible to run this standalone is not an expected by the maintainer and you should rely on your own in this case.
-After ensuring Docker is installed and running, follow these steps:
+A LibreOffice instance operates within the Docker container and available from your local machine (e.g. `localhost:6000`). This design allows the system to be both scalable and efficient, ensuring high-performance document conversions to PDF format.
+
+## Prerequisites
+This service is exclusively designed for operation as a Docker container. Although standalone operation may be possible, it is neither expected nor officially supported by the maintainers of this project.
+
+Before you start, ensure Docker is installed and running on your machine. If not, download Docker from the [https://www.docker.com/get-started](official Docker website).
+
+## Installation
+
+Follow these steps to set up the environment:
 1. Clone this repository to your local machine.
 2. Navigate to the project directory.
 3. Build the Docker image using the provided Dockerfile.
@@ -18,7 +24,7 @@ docker run -d -p 6000:6000 libreoffice_converter
 ```
 
 ## Usage
-Example:
+Use the following command to convert a document to PDF:
 
 ```shell
 curl -X POST -F "file=@path_to/file.doc" http://localhost:6000/docx2pdf > your_converted_file.pdf
@@ -30,12 +36,16 @@ Contributions are welcome! If you'd like to contribute to this project, please s
 
 ## License
 
-MIT, see `LICENSE` for details.
+This project is licensed under the MIT License. For more details, please see the `LICENSE` file.
 
 ## Acknowledgments
 
-This project utilizes `LibreOffice`, a powerful open-source office suite, to perform document conversion. `Docker` a fantastic tool that is used to automate the deployment of applications in lightweight containers so that applications can work efficiently in different environments in isolation. And `Golang` a statically typed, mainstream language designed at Google.
+This project leverages several significant open-source technologies:
+
+- `LibreOffice` - A robust open-source office suite used for document conversion.
+- `Docker` - An excellent tool for automating the deployment of applications within lightweight containers, enabling apps to work efficiently across various environments.
+- `Golang` - A statically-typed, compiled language designed at Google.
 
 ## Contact
 
-If you have any questions, issues, or suggestions, feel free to open an issue or submit a pull request.
+Should you have any questions, issues, or suggestions, please feel free to open an issue or submit a pull request.
