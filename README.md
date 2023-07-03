@@ -2,6 +2,17 @@
 
 This repository provides a Docker-based environment that utilizes LibreOffice for converting various types of documents into PDF format. It supports a multitude of document formats, including, but not limited to, Word, Excel, PowerPoint and OpenDocument.
 
+LibreOffice can convert a wide variety of document formats into PDF. These include:
+1. Microsoft Office formats: Word (.doc, .docx), Excel (.xls, .xlsx), PowerPoint (.ppt, .pptx)
+2. OpenDocument formats: Text (.odt), Spreadsheet (.ods), Presentation (.odp)
+3. Other text formats: Rich Text Format (.rtf), Text (.txt), HTML (.html), XML (.xml)
+4. Publisher files (.pub)
+5. WordPerfect files (.wpd)
+6. StarWriter files (.sdw)
+7. Visio files (.vsd)
+8. Quattro Pro files (.wb2)
+9. Lotus 1-2-3 files (.123)
+
 ## System Design
 
 A LibreOffice instance operates within the Docker container and available from your local machine (e.g. `localhost:6000`). This design allows the system to be both scalable and efficient, ensuring high-performance document conversions to PDF format.

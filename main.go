@@ -7,23 +7,26 @@ import (
 	"net/http"
 	"os"
 	"os/exec"
+	"path"
 	"strings"
 )
 
-func docx2pdfHandle(w http.ResponseWriter, r *http.Request) {
+func doc2pdfHandle(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
 		return
 	}
 
-	file, _, err := r.FormFile("file")
+	file, header, err := r.FormFile("file")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
 	defer file.Close()
 
-	tempFile, err := ioutil.TempFile("", "*.doc")
+	ext := path.Ext(header.Filename)
+
+	tempFile, err := ioutil.TempFile("", "*"+ext)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -53,13 +56,13 @@ func docx2pdfHandle(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	pdfFile := strings.TrimSuffix(tempFile.Name(), ".doc") + ".pdf"
-	pdf, err := os.Open(pdfFile)
+	convertedFile := strings.TrimSuffix(tempFile.Name(), ext) + ".pdf"
+	pdf, err := os.Open(convertedFile)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	defer os.Remove(pdfFile)
+	defer os.Remove(convertedFile)
 
 	w.Header().Set("Content-Type", "application/pdf")
 	_, err = io.Copy(w, pdf)
@@ -70,7 +73,7 @@ func docx2pdfHandle(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	http.HandleFunc("/docx2pdf", docx2pdfHandle)
+	http.HandleFunc("/doc2pdf", doc2pdfHandle)
 
 	port := os.Getenv("PORT")
 	if port == "" {
