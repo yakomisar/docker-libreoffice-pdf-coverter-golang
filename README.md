@@ -38,7 +38,7 @@ docker run -d -p 6000:6000 libreoffice_converter
 Use the following command to convert a document to PDF:
 
 ```shell
-curl -X POST -F "file=@path_to/file.doc" http://localhost:6000/docx2pdf > your_converted_file.pdf
+curl -X POST -F "file=@path_to/file.doc" http://localhost:6000/doc2pdf > your_converted_file.pdf
 ```
 
 ## Contributing
